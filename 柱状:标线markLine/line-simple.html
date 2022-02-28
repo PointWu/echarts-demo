@@ -1,0 +1,270 @@
+<!--
+    THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/zh/editor.html?c=line-simple
+-->
+<!DOCTYPE html>
+<html style="height: 100%">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.0/dist/echarts.min.js"></script>
+        <!-- Uncomment this line if you want to dataTool extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.0/dist/extension/dataTool.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to use gl extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to echarts-stat extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to use map
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.0/map/js/china.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.0/map/js/world.js"></script>
+        -->
+        <!-- Uncomment these two lines if you want to use bmap extension
+        <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=<Your Key Here>"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@{{version}}/dist/extension/bmap.min.js"></script>
+        -->
+
+        <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+
+
+let zhetuStyle = [
+  {
+    text: 'A均分',
+    width: 30,
+    height: 65,
+    fill: 'red',
+    shadowColor: 'red',
+    fontWeight: 'bold'
+  },
+  {
+    text: 'B均分',
+    width: 30,
+    height: 65,
+    fill: 'red',
+    shadowColor: 'red',
+    fontWeight: 'bold'
+  },
+  {
+    text: 'c均分',
+    width: 30,
+    height: 65,
+    fill: 'red',
+    shadowColor: 'red',
+    fontWeight: 'bold'
+  }
+];
+option = {
+  animation: false,
+  xAxis: [
+    {
+      name: '二级指标',
+      data: ['a均分', 'b均分', 'c均分', 'd均分', 'e均分', 'f均分'],
+      axisPointer: {
+        type: 'shadow'
+      },
+      // axisLabel: {
+      //   rotate: 45 // 设置轴标签旋转角度
+      // },
+      axisLine: { show: true }, // 轴线
+      // splitLine: {
+      //   show: true,
+      //   lineStyle: {
+      //     color: ['red'],
+      //     width: 1,
+      //     type: 'solid'
+      //   }
+      // },
+      axisTick: { show: true }, // 刻度
+       splitLine: { show: true } // 分隔线
+    },
+    {
+      name: '一级指标',
+      data: ['A', 'B', 'C'],
+      axisLine: { show: true }, // 轴线
+      axisTick: { show: true }, // 刻度
+      splitLine: { show: true } // 分隔线
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value',
+      name: '分数',
+      min: 0,
+      max: 10,
+      axisLine: { show: true },
+      interval: 1,
+      axisLabel: {
+        formatter: '{value} '
+      }
+    }
+  ],
+  // graphic: {
+  //   elements: [
+  //     {
+  //       type: 'text',
+  //       zlevel: 10,
+  //       left: 170,
+  //       top: 129,
+  //       style: zhetuStyle[0]
+  //     },
+  //     {
+  //       type: 'text',
+  //       zlevel: 10,
+  //       left: 515,
+  //       top: 156,
+  //       style: zhetuStyle[1]
+  //     },
+  //       {
+  //       type: 'text',
+  //       zlevel: 10,
+  //       left: 615,
+  //       top: 156,
+  //       style: zhetuStyle[1]
+  //     }
+  //   ]
+  // },
+  series: [
+    {
+      // label: {
+      //   normal: {
+      //     show: true,
+      //     fontSize: 12,
+      //     fontWeight: 'bold',
+      //     color: 'black',
+      //     position: 'top',
+      //     // 自定义顶部文字写判断
+      //     formatter: function (val) {
+      //       console.log('val', val);
+      //       if (val.dataIndex === 0) {
+      //         return `教育\n${val.data}`;
+      //       } else if (val.dataIndex === 1) {
+      //         return `医疗\n${val.data}`;
+      //       } else {
+      //         return `体育\n${val.data}`;
+      //       }
+      //     }
+      //   }
+      // },
+      type: 'bar',
+      // itemStyle: { color: '#5470C6' },
+      itemStyle: {
+        normal: {
+          color: function (params) {
+            let colors = [
+              '#8F4CFF',
+              '#1195FF',
+              '#27BDB9',
+              '#FC5531',
+              '#9CDEFF',
+              '#1CC26A'
+            ];
+            return colors[params.dataIndex];
+          }
+        }
+      },
+      data: [2.0, 4.9, 7.0, 3.2, 5.6, 6.7, 5.6, 2.2, 3.6, 2.0, 6.4, 3.3],
+      markLine: {
+        //标线
+        itemStyle: {
+          normal: {
+            label: {
+              formatter: '均分',
+              textStyle: {
+                color: 'black',
+                fontSize: 10,
+                fontWeight: 500,
+                padding: [0, 0, 0, 0] //文字间距
+              }
+            },
+            lineStyle: {
+              type: 'solid',
+              color: {
+                //设置渐变
+                type: 'line',
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                colorStops: [
+                  {
+                    offset: 0,
+                    color: 'red ' // 0% 处的颜色
+                  },
+                  {
+                    offset: 1,
+                    color: 'blue' // 100% 处的颜色
+                  }
+                ]
+              }
+            }
+          }
+        },
+        data: [
+          {
+            type: 'average'
+          }
+        ]
+      }
+    },
+    {
+      type: 'line',
+      markLine: {
+        data: [
+          [
+            {
+              xAxis: 'b均分',
+              yAxis: 8,
+              symbol: 'circle',
+              itemStyle: {
+                normal: {
+                  color: 'red' //线条颜色
+                }
+              }
+            },
+            {
+              xAxis: 'e均分',
+              yAxis: 6,
+              symbol: 'circle',
+              itemStyle: {
+                normal: {
+                  color: 'red' //线条颜色
+                }
+              }
+            },
+            {
+              xAxis: 'd均分',
+              yAxis: 7,
+              symbol: 'circle',
+              itemStyle: {
+                normal: {
+                  color: 'red' //线条颜色
+                }
+              }
+            }
+          ]
+        ]
+      }
+    }
+  ]
+};
+
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+        </script>
+    </body>
+</html>
+    
