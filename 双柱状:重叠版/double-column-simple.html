@@ -1,0 +1,144 @@
+<!--
+	THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/zh/editor.html?c=line-simple&code=PYBwLglsB2AEC8sDeAoWsCG0IFsORgC5YAzDAGwGcBTAGjVgHMAnCAE2KVnOpLGIDkAZgCkA2rFaMAFv1gCALGIkAjYGDDAcg0eNgBjGGAwRoAGQwrq5YmGYBXarAC-9dAA8Agu4iVODdDAATxBqQX18akZgZiDxANhKEHIIMDNTMORE6WAAd1sHJ1cEjB9KABUIfQBrTmy8gscXN3RMMosrGyzmdUjiBQBWZoS2fAxiAG0E9AFAflNAbptAcfjAGw941taBQDztQCc9QFGjQGV9NfX5QC11QHP0wHMjQAF3I_WBQF-AwGgYwBDVQFrTW43ADazACVMLwBkIj4zQBHaoBlv0A8sqAHXlAfJAKfugC65Z6ACldoQJnoA4uUAZtqAAzkUYBxpTRgGwlQANpijAL_xgCEbQDKyoAo2JRgB-_QAQKoB0_UAYEoCBIAXQYxXQQW8vn862CoUEADcKI4PjhTMQBi10Hh3MQAIwABnlsFMYGozHFXVVADo5SUypUanVKDl8rA7E1nNyWjRWNQ_LAputUMdYNAMDhMgIAArkDD6ag5chsHXQ4X-lQYZjQyjGc3ycq9cjQ1LUHAAZWCPDqamYkeYAGFgOQYoI7FgkvHqNAwHpDJXmNXmLWQPXGwJhl7syBpBhKALkNNWlnc_nMlwiyXy63253u02JC2q_Ia9A68wG02XOOecdRsZJgA2CRno2Xm-wAbX2AXx-Xh9Pp_3gZc9ZH9Ce44-v1BHSEgnHLJNoxCWN40TZNalTdNoWDToLStYgyCoOhYBAYARwIaBBFMEdI17H9WhPcY3QAJgfIQJGouVYFo2BKIkJi2LouiH3ojkNXQSc8yCAsxy9dBoBiPAuj_ESDArDcBAAYlLM8FAAMQUUtoXWJDrEFaTWktBobUKXiROw3CoHw-RCPYahNOObV3DAAShK4dc23kFRgxqPQSCMHMIAAL39ZUBhAdwSPHb9IoPL17W_DUpNaONmAAcQwEBBAAWjVVVlHHAD_QgkUPOgkykxDOCBAwUVGGhAB6Or6mtdCaBM_jp0LGJ51k9yBC3Hc92bHql23Ltdx7PtjgHIcR1dRL1nawSZ1gOcdQXOT-rGwa12GzcO1GlcItikzyMmAB2CQztfB8LufWBboe66GKvZ6v1aYoEnmlb4zSjL5Gy1VcuhArBCKqCEzK2DBGq2qTIapq0IoVrx1Ot1lQkZUDQUCRDQATgxh90dgImSYNJ8SYJz8ElIr6QfkQAqOThVkwcEFJoFssqghwNRyH8oLiAADk57mK0ENh1G1NhExwYB1GkRo6HHRaXOisTmAkuo3MEeSVJU0tAdVPRVrLXaFN1gWVMBo2up1AB1dgwHl5iYuOUj0DZ6hnOW3IHadliZMXeQdb1g2SJOsZJiF2B8fuiQo6jq7bqjmOk8ug0zre9A4tgLlnAAbiAA
+	请注意，该图表不是 Apache ECharts 官方示例，而是由用户代码生成的。请注意鉴别其内容。
+-->
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+
+  
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.2/dist/echarts.min.js"></script>
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.2/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/china.js"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.2/dist/extension/bmap.min.js"></script>
+  -->
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    option = {
+  animation: false,
+  grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
+  xAxis: {
+    type: 'category',
+    splitLine: { show: true },
+    axisTick: { show: true },
+    axisLabel: { rotate: 45 },
+    data: [
+      '政治过硬',
+      '实干担当',
+      '坚韧执着',
+      '能谋善断',
+      '高效执行',
+      '团结协作',
+      '知人善用',
+      '善于学习',
+      '勇于创新',
+      '追求卓越',
+      '综合得分'
+    ]
+  },
+  yAxis: {
+    type: 'value',
+    min: 5,
+    max: 10,
+    interval: 0.5,
+    axisTick: { show: true }
+  },
+  series: [
+    {
+      name: 'Placeholder',
+      type: 'bar',
+      stack: 'Total',
+      itemStyle: { borderColor: 'transparent', color: 'transparent' },
+      emphasis: {
+        itemStyle: { borderColor: 'transparent', color: 'transparent' }
+      },
+      data: [6, 6.5, 6, 6, 5.5, 6, 6, 6.5, 6, 6, 5.5]
+    },
+    {
+      name: 'Life Cost',
+      type: 'bar',
+      stack: 'Total',
+      label: { show: false, position: 'inside' },
+      data: [2.5, 3, 2.5, 3, 2, 3, 3, 3, 2, 2.5, 2.5],
+      itemStyle: {
+        normal: {
+          color: '#C64F4C',
+          label: {
+            show: true,
+            position: 'inside',
+            textStyle: { color: 'black', fontSize: '15px' }
+          }
+        }
+      }
+    },
+    {
+      barGap: '-100%',
+      name: '',
+      type: 'bar',
+      stack: 'avg',
+      // show: false,
+      itemStyle: { borderColor: 'transparent', color: 'transparent' },
+      emphasis: {
+        itemStyle: { borderColor: 'transparent', color: 'transparent' }
+      },
+      data: [7, 7.5, 6.5, 7, 6, 7, 7, 7.5, 6.5, 6.5, 6]
+    },
+
+    {
+      barGap: '-100%',
+      name: '',
+      type: 'bar',
+      stack: 'avg',
+      // show: false,
+      data: [1, 1.4, 0.9, 1.5, 1, 1, 1, 1.6, 1, 1, 1.5]
+    },
+    {
+      name: '个人得分',
+      type: 'line',
+      symbolSize: 8,
+      symbol: 'dotted',
+      smooth: true,
+      itemStyle: {
+        normal: { color: '#FFC000', borderColor: '#FF8F00', borderWidth: 2 }
+      },
+      lineStyle: { width: 2, color: '#FFC000' },
+      data: [8, 9, 7, 8, 8, 7.7, 8, 9, 7, 8, 7.7]
+    }
+  ]
+};
+
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>
