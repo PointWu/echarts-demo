@@ -1,0 +1,180 @@
+<!--
+	THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/zh/editor.html?c=bar-y-category&code=DYUwLgBAXgFuCuBlMBPUEC8EDaAoCEA3vgRGCAB5gBcEA5IHLydANCQQO4CWAJmDLQGYADK1IQ4nAOYwaEAGwBWUaQBmnYMFp0AxABYAnAHYAIqZZsIAZxgBDbgHt2AYXvB7AJy16jp4-bEq9gB2YADqIFIyWgBGrtx0JAC-ysRi5FRagLRygGV6gPIKTMocPHyCIhYS0rKKhRBqGl4GJmY11naOLm6e9NHA8CD-qsFhEZUxcQkEySSppOmydDm5gBtZA0W8_BDCNRVR8koWdZr03k1-LbYOzq4eMb39NYEh4ZHzscDxSSkWc1orNVzrUrbEa7aoHdRHHSNXyrKwXdrXLp0Hp9WGPYYvMbvCYQRK4AC6AG5cPYAA5gTjBTBEEhgeyuCmk2gzAhgdxSSQgJE2CicSywnl8gAK9k4IS5zIsrJQpJAWlalxxk0-JEk7O4krEoBU8wEAFJYezRvRdAaarEwHSALZafWwgDGQxsYoAMjZoiAjmy-iqCBQAIK8yya2YyuX0ABuNjusNi8CC3Bs7hQAHEbEycCIIEIAHRCACM-JqpPslk4FOCWjppNhYvI7ijR3zZTEgssABVOPaANbMuGOWgqaOWEC4mptt0ezQs0jWAdD4AjixTMSWUnAcsusXhmcEOfsWjekA1AgboIgZBoHdS0iOzq0PBiJ_0dgwcv3G9iOiv9-w5_ft9yD_J8dAAUQEUCAA4ADEACZgK_H8gJPEDtHAqC4IQ0gAN_FCvzQiCYPgvDsKQj9n0QwDyIoggwMIzDPwgItGIBEoIHzEjUFleVXB4JVSDxMRBLHEgUEDPkQ2lbj6HtGxyEkDwUFhRMwBsB86EAfOVADAXFh6EAS89AHi9XS6EAJX1AD0dYzAEolQA1uWMwBYFUAbHMrMAKbdjMABCNAEYdYzAGFzQBspToZjVxgAdamHY8LAnbc-33QcwpE1sg07HtouCg9QsXUcV1nddNyioh-zShcR1xX0IDVdM33tSSIE9EArRAEJgxwG9d1DaS6DmLCoFACNPVoZsSO1WR8wUFsKOrWhdH2GjLFQUBaFgBBL1AbAhHxG8srEVqpPDDrKDALqer69ixufIbBDBGiJogKaSNmq8FrgMAkDmkBsELDaUO2sgwyrfbDpAXqm1Op9zogBRYOm8ayUmqHn3u-boCel6r2wWD1ufTbSG-rjds6kjusB46BsYsHDEhziYZuuGnwR8NFue5a3oEDGnyxixWaykd2RAJrH2xm8ghser5UddxqLSX7uiTYDoiTUJig2OhRuAu8bmOaFmhvFS1JwSDYOYCBIMMQ3DF0U2Tc2c2IEMLMFAEQ25DW5cSHWxJCSAA
+	请注意，该图表不是 Apache ECharts 官方示例，而是由用户代码生成的。请注意鉴别其内容。
+-->
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+
+  
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.3/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/china.js"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.3/dist/extension/bmap.min.js"></script>
+  -->
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    let zhetuStyle = [
+  {
+    text: '低',
+    width: 30,
+    height: 65,
+    fill: '#497DDD',
+    shadowColor: '#497DDD',
+    fontWeight: 'bold'
+  },
+  {
+    text: '中度偏低',
+    width: 30,
+    height: 65,
+    fill: '#497DDD',
+    shadowColor: 'blue',
+    fontWeight: 'bold'
+  },
+  {
+    text: '中度偏高',
+    width: 30,
+    height: 65,
+    fill: '#497DDD',
+    shadowColor: 'blue',
+    fontWeight: 'bold'
+  },
+  {
+    text: '高',
+    width: 30,
+    height: 65,
+    fill: '#497DDD',
+    shadowColor: 'blue',
+    fontWeight: 'bold'
+  }
+];
+option = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value',
+    boundaryGap: [0, 0.01],
+    position: 'top',
+    interval: 10,
+    axisTick: { show: false },
+    axisLabel:{
+      show:false
+    },
+    splitLine: {
+      show: true,
+      lineStyle: {
+        color: [
+          'white',
+          'white',
+          'white',
+          '#E3E8F2',
+          'white',
+          '#E3E8F2',
+          'white',
+          '#E3E8F2',
+          'white',
+          'white',
+          '#E3E8F2'
+        ],
+        width: 1,
+        type: 'solid'
+      }
+    }
+  },
+  yAxis: {
+    type: 'category',
+    data: ['原理', '秩序', '归属', '利他', '名望', '利益', '成就', '权力'],
+    show: false,
+    axisLine: { show: false },
+    axisTick: { show: false },
+    splitLine: { show: false }
+  },
+  graphic: {
+    elements: [
+      {
+        type: 'text',
+        zlevel: 10,
+        left: 150,
+        top: 45,
+        style: zhetuStyle[0]
+      },
+      {
+        type: 'text',
+        zlevel: 10,
+        left: 365,
+        top: 45,
+        style: zhetuStyle[1]
+      },
+      {
+        type: 'text',
+        zlevel: 10,
+        left: 525,
+        top: 45,
+        style: zhetuStyle[2]
+      },
+      {
+        type: 'text',
+        zlevel: 10,
+        left: 725,
+        top: 45,
+        style: zhetuStyle[3]
+      },
+    
+    ]
+  },
+  series: [
+    {
+      name: 'score',
+      type: 'bar',
+      barWidth: '50',
+      color: '#497DDD',
+      data: [82, 87, 74, 77, 34, 70, 53, 60]
+    }
+  ]
+};
+
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>
